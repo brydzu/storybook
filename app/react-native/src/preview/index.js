@@ -50,7 +50,7 @@ export default class Preview {
       const fileName = this._stories.getStoryFileName(kind);
 
       const stories = this._stories.getStories(kind).map(name => {
-        const render = this._stories.getStory(kind, name);
+        const render = this._stories.getStoryWithContext(kind, name);
         return { name, render };
       });
 
@@ -112,7 +112,7 @@ export default class Preview {
 
   _selectStory(selection) {
     const { kind, story } = selection;
-    const storyFn = this._stories.getStory(kind, story);
+    const storyFn = this._stories.getStoryWithContext(kind, story);
     this._events.emit('story', storyFn, selection);
   }
 }
